@@ -7,15 +7,15 @@ function HomeScreen() {
         <>
             <VStack>
                 <YonderText
-                    typography={YonderTypography.test1}
+                    typography={YonderTypography.body}
                 >
                     Hello World
                 </YonderText>
 
                 <YonderText
-                    typography={YonderTypography.test2}
+                    typography={YonderTypography.body}
                 >
-                    Hello World
+                    Hello World asdf
                 </YonderText>
             </VStack>
         </>

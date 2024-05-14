@@ -1,9 +1,9 @@
 import React, { createContext, useState, useEffect, useMemo } from "react";
 import StateManager from "../../state/publishers/StateManager";
-import ResColors from "../styling/ResColors";
-import LocalStorageManager from "../../services/LocalStorageManager";
 import { createGlobalStyle } from "styled-components";
 import { ColorScheme } from "../../state/publishers/types/ColorScheme";
+import LocalStorageManager from "../../services/LocalStorageManager";
+import YonderColors from "../styling/YonderColors";
 
 const ColorThemeContext = createContext(StateManager.colorScheme.read());
 
@@ -26,7 +26,7 @@ export const ColorThemeProvider: React.FC<Props> = ({ children }) => {
     }, []);
 
     useEffect(() => {
-        document.body.style.backgroundColor = ResColors.background.getColor();
+        document.body.style.backgroundColor = YonderColors.background.getColor();
         LocalStorageManager.inst.writeColorTheme(colorScheme);
     }, [colorScheme]);
 
@@ -41,7 +41,7 @@ export const ColorThemeProvider: React.FC<Props> = ({ children }) => {
 // Color scheme still has to be passed in to react
 const GlobalStyle = createGlobalStyle<{ colorScheme: ColorScheme }>`
     body {
-        scrollbar-color: ${() => `${ResColors.scrollBar.getColor()} ${ResColors.fillBackgroundLight.getColor()}`};
+        scrollbar-color: ${() => `${YonderColors.scrollBar.getColor()} ${YonderColors.buttonFill.getColor()}`};
         transition: background-color 0.2s ease, color 0.2s ease;
     }
 
@@ -50,18 +50,18 @@ const GlobalStyle = createGlobalStyle<{ colorScheme: ColorScheme }>`
     }
 
     ::-webkit-scrollbar-thumb {
-        background-color: ${() => ResColors.scrollBar.getColor()};
+        background-color: ${() => YonderColors.scrollBar.getColor()};
         border-radius: 0px;
     }
 
     ::-webkit-scrollbar-thumb:hover {
-        background-color: ${() => ResColors.scrollBar.getColor()};
+        background-color: ${() => YonderColors.scrollBar.getColor()};
         border-radius: 0px;
         
     }
 
     ::-webkit-scrollbar-track {
-        background-color: ${() => ResColors.fillBackgroundLight.getColor()};
+        background-color: ${() => YonderColors.buttonFill.getColor()};
         border-radius: 0px;
     }
 `;

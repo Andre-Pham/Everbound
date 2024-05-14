@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import ResColor from "../../styling/color/ResColor";
-import ResCSS from "../../styling/ResCSS";
+import YonderCSS from "../../styling/YonderCSS";
+import YonderColor from "../../styling/color/YonderColor";
 
 interface Props {
-    color: ResColor;
+    color: YonderColor;
     disableSelection?: boolean;
     onPress?: () => void;
     children: React.ReactNode;
@@ -46,7 +46,7 @@ const FlatContainer: React.FC<Props> = ({ color, onPress = undefined, disableSel
                 borderRadius: 16,
                 padding: 18,
                 backgroundColor: color.getColor(),
-                ...(disableSelection ? ResCSS.diableSelection : undefined),
+                ...(disableSelection ? YonderCSS.diableSelection : undefined),
                 ...style,
             }}
         >
@@ -67,7 +67,7 @@ const FlatContainer: React.FC<Props> = ({ color, onPress = undefined, disableSel
                 cursor: "pointer",
                 transition: "transform 0.1s",
                 transform: pressed || touched ? "scale(0.95)" : "scale(1)",
-                ...(disableSelection ? ResCSS.diableSelection : undefined),
+                ...(disableSelection ? YonderCSS.diableSelection : undefined),
                 ...style,
             }}
         >

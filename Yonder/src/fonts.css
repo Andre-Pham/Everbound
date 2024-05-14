@@ -3,13 +3,6 @@
 @font-face {
     font-family: "Mx437 DOS/V TWN16";
     src: url("/src/fonts/Mx437_DOS-V_TWN16.ttf") format("truetype");
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: "Mx437 DOS/V TWN16";
-    src: url("/src/fonts/Mx437_DOS-V_TWN16.ttf") format("truetype");
-    font-weight: 800;
+    font-weight: normal;
     font-style: normal;
 }
