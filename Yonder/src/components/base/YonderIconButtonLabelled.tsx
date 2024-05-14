@@ -55,7 +55,10 @@ const YonderIconButtonLabelled: React.FC<Props> = ({
                     textAlign: "center",
                 }}
             >
-                <YonderText typography={YonderTypography.subscriptLabel} style={{ alignSelf: "center", textAlign: "center" }}>
+                <YonderText
+                    typography={YonderTypography.subscriptLabel}
+                    style={{ alignSelf: "center", textAlign: "center" }}
+                >
                     {label}
                 </YonderText>
             </div>

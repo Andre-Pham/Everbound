@@ -8,7 +8,7 @@ import YonderTypographyConfig from "./typography/YonderTypographyConfig";
  */
 class YonderTypography {
     static get body(): YonderTypographyConfig {
-        return new YonderTypographyConfig(22, YonderFontFamily.Mx437, YonderColors.textDark, YonderFontWeight.regular)
+        return new YonderTypographyConfig(22, YonderFontFamily.Mx437, YonderColors.textDark, YonderFontWeight.regular);
     }
 }
 

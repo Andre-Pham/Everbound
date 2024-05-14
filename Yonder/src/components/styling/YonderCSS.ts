@@ -20,6 +20,12 @@ class YonderCSS {
             boxShadow: "0px 4px 11px rgba(0, 0, 0, 0.4)",
         };
     }
+
+    static get noInterpolation(): React.CSSProperties {
+        return {
+            imageRendering: "pixelated",
+        };
+    }
 }
 
 export default YonderCSS;
