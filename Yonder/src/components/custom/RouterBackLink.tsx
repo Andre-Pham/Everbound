@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import YonderTypographyConfig from "../styling/typography/YonderTypographyConfig";
 import { YonderFontWeight } from "../styling/typography/YonderFontWeight";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import RouterNavigator from "../../services/RouterNavigator";
 
 interface Props {

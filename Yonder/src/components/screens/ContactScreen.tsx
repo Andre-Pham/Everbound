@@ -2,17 +2,9 @@ import VStack from "../containers/Stacks/VStack";
 import YonderText from "../base/YonderText";
 import YonderTypography from "../styling/YonderTypography";
 import YonderDimensions from "../styling/YonderDimensions";
-import YonderCSS from "../styling/YonderCSS";
-import YonderImage, { YonderImageScale } from "../base/YonderImage";
 import VGap from "../containers/Spacing/VGap";
 import useWindowResize from "../hooks/useWindowResize";
 import { useState } from "react";
-import YonderStyledButton from "../base/YonderStyledButton";
-import HStack from "../containers/Stacks/HStack";
-import { mdiApple, mdiYoutube } from "@mdi/js";
-import Spacer from "../containers/Spacing/Spacer";
-import Routerlink from "../custom/RouterLink";
-import RouterNavigator from "../../services/RouterNavigator";
 import RouterBackLink from "../custom/RouterBackLink";
 
 function ContactScreen() {
@@ -49,7 +41,7 @@ function ContactScreen() {
                     {"everboundrpg@gmail.com"}
                 </YonderText>
 
-                <VGap size={64} />
+                <VGap size={30} />
 
                 <RouterBackLink typography={YonderTypography.navigationLink} wide={false}>
                     {"Back"}
