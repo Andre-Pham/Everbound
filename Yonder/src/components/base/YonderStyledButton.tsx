@@ -13,6 +13,7 @@ interface Props {
     disabled?: boolean;
     width?: number;
     style?: React.CSSProperties;
+    iconStyle?: React.CSSProperties;
     onPress: () => void;
 }
 
@@ -23,6 +24,7 @@ const YonderStyledButton: React.FC<Props> = ({
     disabled = false,
     width,
     style,
+    iconStyle,
     onPress,
 }) => {
     const [pressed, setPressed] = useState(false);
@@ -100,7 +102,12 @@ const YonderStyledButton: React.FC<Props> = ({
                         disabled={disabled}
                     >
                         {iconPath && (
-                            <Icon path={iconPath} color={typography.color} size={1.0} style={{ paddingRight: "8px" }} />
+                            <Icon
+                                path={iconPath}
+                                color={typography.color}
+                                size={1.0}
+                                style={{ paddingRight: "8px", ...iconStyle }}
+                            />
                         )}
 
                         <YonderText typography={typography} wide={false}>

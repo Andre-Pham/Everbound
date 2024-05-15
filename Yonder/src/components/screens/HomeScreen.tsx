@@ -73,6 +73,9 @@ function HomeScreen() {
                         onPress={() => {}}
                         width={220}
                         iconPath={mdiApple}
+                        iconStyle={{
+                            paddingBottom: 2.5,
+                        }}
                     />
 
                     <YonderStyledButton
