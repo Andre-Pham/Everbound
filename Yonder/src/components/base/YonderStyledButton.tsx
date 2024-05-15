@@ -5,14 +5,13 @@ import Icon from "@mdi/react";
 import YonderCSS from "../styling/YonderCSS";
 import YonderColors from "../styling/YonderColors";
 import VStack from "../containers/Stacks/VStack";
-import HStack from "../containers/Stacks/HStack";
 
 interface Props {
     label: string;
     typography: YonderTypographyConfig;
     iconPath?: string; // https://pictogrammers.com/library/mdi/
     disabled?: boolean;
-    wide?: boolean;
+    width?: number;
     style?: React.CSSProperties;
     onPress: () => void;
 }
@@ -22,7 +21,7 @@ const YonderStyledButton: React.FC<Props> = ({
     typography,
     iconPath = undefined,
     disabled = false,
-    wide = true,
+    width,
     style,
     onPress,
 }) => {
@@ -58,9 +57,10 @@ const YonderStyledButton: React.FC<Props> = ({
     return (
         <div
             style={{
-                width: "100%",
+                width: width ?? "100%",
                 height: 64,
                 position: "relative",
+                ...style,
             }}
         >
             <div
@@ -72,14 +72,10 @@ const YonderStyledButton: React.FC<Props> = ({
                 onTouchCancel={handleTouchCancel}
                 style={{
                     opacity: disabled ? 0.5 : 1,
-                    width: wide ? "100%" : undefined,
-                    alignSelf: wide ? undefined : "center",
+                    width: "100%",
                     cursor: disabled ? "default" : "pointer",
-                    transition: "transform 0.1s",
                     position: "absolute",
                     bottom: 0,
-                    // transform: pressed || touched ? "translateY(12px)" : "translateY(0px)",
-                    ...style,
                 }}
             >
                 <VStack
@@ -101,8 +97,6 @@ const YonderStyledButton: React.FC<Props> = ({
                             backgroundColor: YonderColors.buttonFill.getColor(),
                             cursor: disabled ? "default" : "pointer",
                             border: "none",
-                            // transition: "transform 0.1s",
-                            // transform: pressed || touched ? "translateY(12px)" : "translateY(0px)",
                             ...YonderCSS.diableSelection,
                         }}
                         disabled={disabled}
