@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Environment from "../../state/Environment/Environment";
+import Environment from "../../state/environment/Environment";
 
 function usePortraitRendering(callback: (shouldRenderPortrait: boolean) => void) {
     useEffect(() => {

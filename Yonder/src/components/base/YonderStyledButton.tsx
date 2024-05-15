@@ -33,7 +33,6 @@ const YonderStyledButton: React.FC<Props> = ({
     };
 
     const handleMouseUp = () => {
-        onPress && onPress();
         setPressed(false);
     };
 
@@ -46,7 +45,6 @@ const YonderStyledButton: React.FC<Props> = ({
     };
 
     const handleTouchEnd = () => {
-        onPress && onPress();
         setTouched(false);
     };
 
@@ -102,7 +100,7 @@ const YonderStyledButton: React.FC<Props> = ({
                         disabled={disabled}
                     >
                         {iconPath && (
-                            <Icon path={iconPath} color={typography.color} size={0.8} style={{ paddingRight: "6px" }} />
+                            <Icon path={iconPath} color={typography.color} size={1.0} style={{ paddingRight: "8px" }} />
                         )}
 
                         <YonderText typography={typography} wide={false}>

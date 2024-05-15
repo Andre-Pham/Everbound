@@ -4,75 +4,103 @@ import YonderTypography from "../styling/YonderTypography";
 import YonderDimensions from "../styling/YonderDimensions";
 import YonderCSS from "../styling/YonderCSS";
 import YonderImage, { YonderImageScale } from "../base/YonderImage";
-import YonderButton from "../base/YonderButton";
-import YonderColor from "../styling/color/YonderColor";
-import YonderColors from "../styling/YonderColors";
 import VGap from "../containers/Spacing/VGap";
+import Spacer from "../containers/Spacing/Spacer";
+import useWindowResize from "../hooks/useWindowResize";
+import { useState } from "react";
 import YonderStyledButton from "../base/YonderStyledButton";
-import { mdiPacMan } from "@mdi/js";
+import HStack from "../containers/Stacks/HStack";
+import { mdiApple, mdiCellphone, mdiPlay, mdiPlayBox, mdiPlayCircle, mdiYoutube } from "@mdi/js";
+import AnimationPlayer from "../custom/AnimationPlayer";
 
 function HomeScreen() {
+    const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+    useWindowResize((_: number, height: number) => {
+        setWindowHeight(height);
+    });
+
     return (
         <div
             style={{
                 padding: YonderDimensions.screenPadding,
                 minWidth: YonderDimensions.minimumPageWidth,
+                minHeight: 500,
+                height: windowHeight - YonderDimensions.screenPadding * 2 - 16,
             }}
         >
-            <VStack style={{ alignItems: "center", border: "1px solid red" }}>
+            <VStack style={{ alignItems: "center", justifyContent: "center", height: "100%", flexWrap: "nowrap" }}>
                 <YonderImage
                     fileName="header.png"
                     scale={YonderImageScale.scaleToFill}
                     style={{
                         ...YonderCSS.noInterpolation,
                         width: "100%",
-                        maxWidth: 600,
-                        border: "1px solid blue",
+                        maxWidth: 500,
                     }}
                 />
 
-                <YonderText typography={YonderTypography.body}>Hello World</YonderText>
+                <VGap size={16} />
+
+                <YonderText
+                    typography={YonderTypography.subheader}
+                    wide={false}
+                    style={{ textAlign: "center", opacity: 0.4 }}
+                >
+                    {"An iOS RPG Roguelike"}
+                </YonderText>
+
+                <VGap size={100} />
 
                 <YonderText
                     typography={YonderTypography.body}
-                    style={{
-                        border: "1px solid blue",
-                    }}
+                    wide={false}
+                    style={{ maxWidth: 400, textAlign: "center" }}
                 >
-                    {"Hello World 1 2 3 4 5 6 7 8 9 10 11 12 13 14"}
+                    {"Fight hostiles, collect loot, fight bosses, meet NPCs, and more!"}
                 </YonderText>
 
-                <YonderButton
-                    label="Download"
-                    typography={YonderTypography.body}
-                    color={YonderColors.buttonFill}
-                    onPress={() => {}}
-                />
+                <VGap size={24} />
 
-                <div
+                <HStack spacing={24} verticalSpacing={12} style={{ justifyContent: "center" }}>
+                    <YonderStyledButton
+                        label="App Store"
+                        typography={YonderTypography.button}
+                        onPress={() => {}}
+                        width={220}
+                        iconPath={mdiApple}
+                    />
+
+                    <YonderStyledButton
+                        label="Trailer"
+                        typography={YonderTypography.button}
+                        onPress={() => {
+                            console.log("trialer");
+                        }}
+                        width={220}
+                        iconPath={mdiYoutube}
+                    />
+                </HStack>
+
+                <VGap size={100} />
+
+                <AnimationPlayer
+                    frames={[
+                        "firepit1.png",
+                        "firepit2.png",
+                        "firepit3.png",
+                        "firepit4.png",
+                        "firepit5.png",
+                        "firepit6.png",
+                        "firepit7.png",
+                    ]}
+                    // width={250}
+                    scale={YonderImageScale.scaleToFill}
                     style={{
-                        height: 100,
-                        width: YonderDimensions.minimumPageWidth,
-                        background: "red",
+                        ...YonderCSS.noInterpolation,
+                        width: "80%",
+                        maxWidth: 300,
                     }}
                 />
-
-                <VGap size={25} />
-
-                <YonderStyledButton label="Download" typography={YonderTypography.body} onPress={() => {}} />
-
-                <VGap size={25} />
-
-                <YonderStyledButton
-                    iconPath={mdiPacMan}
-                    label="Download"
-                    typography={YonderTypography.body}
-                    onPress={() => {}}
-                />
-
-                <VGap size={25} />
-
-                <YonderText typography={YonderTypography.body}>Hello World</YonderText>
             </VStack>
         </div>
     );

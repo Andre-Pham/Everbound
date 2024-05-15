@@ -5,6 +5,28 @@ interface Size {
     height: number;
 }
 
+/**
+ * Monitors the size of a referenced HTML element.
+ * It returns a ref to attach to the target element and an object with the element's width and height.
+ *
+ * Example:
+ *
+ * const ResizableComponent = () => {
+ *     const [ref, size] = useResizeObserver();
+ *
+ *     return (
+ *         <div>
+ *             <div ref={ref} style={{ width: '50%', height: '200px', background: 'lightgray' }}>
+ *                 Resize me!
+ *             </div>
+ *             <p>Width: {size.width}px</p>
+ *             <p>Height: {size.height}px</p>
+ *         </div>
+ *     );
+ * };
+ *
+ * export default ResizableComponent;
+ */
 function useResizeObserver(): [RefObject<HTMLDivElement>, Size] {
     const [size, setSize] = useState<Size>({ width: 0, height: 0 });
     const ref = useRef<HTMLDivElement>(null);
