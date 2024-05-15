@@ -18,6 +18,10 @@ class YonderTypography {
     static get button(): YonderTypographyConfig {
         return new YonderTypographyConfig(20, YonderFontFamily.Mx437, YonderColors.textDark, YonderFontWeight.regular);
     }
+
+    static get navigationLink(): YonderTypographyConfig {
+        return new YonderTypographyConfig(16, YonderFontFamily.Mx437, YonderColors.textDark, YonderFontWeight.regular);
+    }
 }
 
 export default YonderTypography;

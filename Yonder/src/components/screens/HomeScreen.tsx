@@ -11,9 +11,13 @@ import YonderStyledButton from "../base/YonderStyledButton";
 import HStack from "../containers/Stacks/HStack";
 import { mdiApple, mdiYoutube } from "@mdi/js";
 import AnimationPlayer from "../custom/AnimationPlayer";
+import Spacer from "../containers/Spacing/Spacer";
+import RouterNavigator from "../../services/RouterNavigator";
+import RouterLink from "../custom/RouterLink";
 
 function HomeScreen() {
     const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+
     useWindowResize((_: number, height: number) => {
         setWindowHeight(height);
     });
@@ -28,6 +32,8 @@ function HomeScreen() {
             }}
         >
             <VStack style={{ alignItems: "center", justifyContent: "center", height: "100%", flexWrap: "nowrap" }}>
+                <Spacer />
+
                 <YonderImage
                     fileName="header.png"
                     scale={YonderImageScale.scaleToFill}
@@ -55,7 +61,7 @@ function HomeScreen() {
                     wide={false}
                     style={{ maxWidth: 400, textAlign: "center" }}
                 >
-                    {"Fight hostiles, collect loot, fight bosses, meet NPCs, and more!"}
+                    {"Battle hostiles, conquer bosses, collect loot, meet NPCs, and more!"}
                 </YonderText>
 
                 <VGap size={24} />
@@ -92,7 +98,6 @@ function HomeScreen() {
                         "firepit6.png",
                         "firepit7.png",
                     ]}
-                    // width={250}
                     scale={YonderImageScale.scaleToFill}
                     style={{
                         ...YonderCSS.noInterpolation,
@@ -100,6 +105,12 @@ function HomeScreen() {
                         maxWidth: 300,
                     }}
                 />
+
+                <Spacer />
+
+                <RouterLink path={RouterNavigator.CONTACT_PATH} typography={YonderTypography.navigationLink}>
+                    {"Contact"}
+                </RouterLink>
             </VStack>
         </div>
     );
