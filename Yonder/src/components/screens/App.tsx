@@ -5,12 +5,11 @@ import YonderDimensions from "../styling/YonderDimensions";
 import YonderCSS from "../styling/YonderCSS";
 import YonderImage, { YonderImageScale } from "../base/YonderImage";
 import VGap from "../containers/Spacing/VGap";
-import Spacer from "../containers/Spacing/Spacer";
 import useWindowResize from "../hooks/useWindowResize";
 import { useState } from "react";
 import YonderStyledButton from "../base/YonderStyledButton";
 import HStack from "../containers/Stacks/HStack";
-import { mdiApple, mdiCellphone, mdiPlay, mdiPlayBox, mdiPlayCircle, mdiYoutube } from "@mdi/js";
+import { mdiApple, mdiYoutube } from "@mdi/js";
 import AnimationPlayer from "../custom/AnimationPlayer";
 
 function HomeScreen() {
@@ -97,7 +96,7 @@ function HomeScreen() {
                     scale={YonderImageScale.scaleToFill}
                     style={{
                         ...YonderCSS.noInterpolation,
-                        width: "80%",
+                        width: "70%",
                         maxWidth: 300,
                     }}
                 />
