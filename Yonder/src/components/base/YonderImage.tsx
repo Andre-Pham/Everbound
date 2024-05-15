@@ -13,6 +13,7 @@ interface Props {
     width?: number | string;
     height?: number | string;
     scale?: YonderImageScale;
+    draggable?: boolean;
     style?: React.CSSProperties;
 }
 
@@ -21,6 +22,7 @@ const YonderImage: React.FC<Props> = ({
     width = "auto",
     height = "auto",
     scale = YonderImageScale.none,
+    draggable = false,
     style,
 }) => {
     const [size, setSize] = useState<{ width?: number | string; height?: number | string }>({
@@ -69,6 +71,7 @@ const YonderImage: React.FC<Props> = ({
             src={`${import.meta.env.BASE_URL}images/${fileName}`}
             alt={fileName}
             onLoad={handleImageLoaded}
+            draggable={draggable}
             style={{
                 objectFit: resizeMode,
                 width: size.width,
