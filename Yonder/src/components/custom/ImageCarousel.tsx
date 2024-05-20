@@ -168,69 +168,82 @@ const ImageCarousel: React.FC<Props> = ({ imagePaths, visibleImagesCount = 3, im
         );
     } else {
         return (
-            <HStack
+            <VStack
+                spacing={20}
                 style={{
                     alignItems: "center",
                     ...style,
                 }}
             >
-                <YonderStyledButton
-                    label="<"
-                    typography={YonderTypography.button}
-                    onPress={() => {
-                        handlePrevClick(pressTransition);
-                    }}
-                    width={60}
-                    disabled={prevClickDisabled()}
-                />
-
-                <HGap size={12} />
-
-                <div
+                <HStack
                     style={{
-                        overflow: "hidden",
-                        width: "calc(100% - 60px - 60px - 12px - 12px)",
-                        borderRadius: 8,
+                        alignItems: "center",
                     }}
                 >
+                    <YonderStyledButton
+                        label="<"
+                        typography={YonderTypography.button}
+                        onPress={() => {
+                            handlePrevClick(pressTransition);
+                        }}
+                        width={60}
+                        disabled={prevClickDisabled()}
+                    />
+
+                    <HGap size={12} />
+
                     <div
                         style={{
-                            display: "flex",
-                            transition: transition,
-                            transform: `translateX(calc(-${(currentIndex / visibleImagesCount) * 100}% - ${calculateTransformOffset()}px + ${dragOffset}px))`,
-                            touchAction: "none",
+                            overflow: "hidden",
+                            width: "calc(100% - 60px - 60px - 12px - 12px)",
+                            borderRadius: 8,
                         }}
                     >
-                        {imagePaths.map((imagePath, index) => (
-                            <img
-                                key={index}
-                                src={`${import.meta.env.BASE_URL}images/${imagePath}`}
-                                alt={imagePath}
-                                draggable={false}
-                                style={{
-                                    minWidth: `calc(${100 / visibleImagesCount}% - ${(imageSpacing * (visibleImagesCount - 1)) / visibleImagesCount}px)`,
-                                    maxWidth: `calc(${100 / visibleImagesCount}% - ${(imageSpacing * (visibleImagesCount - 1)) / visibleImagesCount}px)`,
-                                    flexShrink: 0,
-                                    borderRadius: 8,
-                                    marginRight: imageSpacing,
-                                }}
-                            />
-                        ))}
+                        <div
+                            style={{
+                                display: "flex",
+                                transition: transition,
+                                transform: `translateX(calc(-${(currentIndex / visibleImagesCount) * 100}% - ${calculateTransformOffset()}px + ${dragOffset}px))`,
+                                touchAction: "none",
+                            }}
+                        >
+                            {imagePaths.map((imagePath, index) => (
+                                <img
+                                    key={index}
+                                    src={`${import.meta.env.BASE_URL}images/${imagePath}`}
+                                    alt={imagePath}
+                                    draggable={false}
+                                    style={{
+                                        minWidth: `calc(${100 / visibleImagesCount}% - ${(imageSpacing * (visibleImagesCount - 1)) / visibleImagesCount}px)`,
+                                        maxWidth: `calc(${100 / visibleImagesCount}% - ${(imageSpacing * (visibleImagesCount - 1)) / visibleImagesCount}px)`,
+                                        flexShrink: 0,
+                                        borderRadius: 8,
+                                        marginRight: imageSpacing,
+                                    }}
+                                />
+                            ))}
+                        </div>
                     </div>
-                </div>
 
-                <HGap size={12} />
+                    <HGap size={12} />
 
-                <YonderStyledButton
-                    label=">"
-                    typography={YonderTypography.button}
-                    onPress={() => {
-                        handleNextClick(pressTransition);
-                    }}
-                    width={60}
-                    disabled={nextClickDisabled()}
-                />
-            </HStack>
+                    <YonderStyledButton
+                        label=">"
+                        typography={YonderTypography.button}
+                        onPress={() => {
+                            handleNextClick(pressTransition);
+                        }}
+                        width={60}
+                        disabled={nextClickDisabled()}
+                    />
+                </HStack>
+
+                <YonderText typography={YonderTypography.subscript} wide={false}>
+                    {visibleImagesCount <= 1
+                        ? `${currentIndex + 1} of ${imagePaths.length}`
+                        : `${currentIndex + 1}-${currentIndex + visibleImagesCount} of ${imagePaths.length}`}
+                </YonderText>
+            </VStack>
         );
     }
 };
