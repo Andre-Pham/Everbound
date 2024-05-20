@@ -16,6 +16,7 @@ import ImageCarousel from "../custom/ImageCarousel";
 import Environment from "../../state/environment/Environment";
 import YonderIconButton from "../base/YonderIconButton";
 import YonderColors from "../styling/YonderColors";
+import LinksManager from "../../services/LinksManager";
 
 function HomeScreen() {
     const [windowHeight, setWindowHeight] = useState(window.innerHeight);
@@ -32,6 +33,14 @@ function HomeScreen() {
             scrollRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
         }
     };
+
+    const openTrailer = () => {
+        LinksManager.inst.openLink(LinksManager.TRAILER_LINK);
+    }
+
+    const openAppStore = () => {
+        LinksManager.inst.openLink(LinksManager.APP_STORE);
+    }
 
     return (
         <div
@@ -88,7 +97,7 @@ function HomeScreen() {
                         <YonderStyledButton
                             label="App Store"
                             typography={YonderTypography.button}
-                            onPress={() => {}}
+                            onPress={openAppStore}
                             width={220}
                             iconPath={mdiApple}
                             iconStyle={{
@@ -99,9 +108,7 @@ function HomeScreen() {
                         <YonderStyledButton
                             label="Trailer"
                             typography={YonderTypography.button}
-                            onPress={() => {
-                                console.log("trialer");
-                            }}
+                            onPress={openTrailer}
                             width={220}
                             iconPath={mdiYoutube}
                         />
