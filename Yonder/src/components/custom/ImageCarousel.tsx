@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDrag } from "@use-gesture/react";
 import Yonder from "../../language/Functions";
 import HStack from "../containers/Stacks/HStack";
@@ -29,6 +29,7 @@ const ImageCarousel: React.FC<Props> = ({ imagePaths, visibleImagesCount = 3, im
     const [transition, setTransition] = useState(pressTransition);
     const [dragOffset, setDragOffset] = useState(0);
     const [renderVertically, setRenderVertically] = useState(shouldRenderVertically());
+    const previousMx = useRef(0);
 
     useWindowResize(() => {
         setRenderVertically(shouldRenderVertically());
@@ -64,7 +65,7 @@ const ImageCarousel: React.FC<Props> = ({ imagePaths, visibleImagesCount = 3, im
 
     const generateDragTransition = (velocity: number): string => {
         const time = -0.5 * velocity + 1.2;
-        const boundedTime = Yonder.boundToRange(time, 0.2, 1.2);
+        const boundedTime = Yonder.boundToRange(time, 0.25, 1.0);
         return `transform ${boundedTime}s cubic-bezier(0.1, 0.1, 0.1, 1.0)`;
     };
 
@@ -81,8 +82,9 @@ const ImageCarousel: React.FC<Props> = ({ imagePaths, visibleImagesCount = 3, im
         if (active) {
             setTransition(noTransition);
             setDragOffset(mx);
-            const draggedLeft = mx < 0;
-            const draggedRight = mx > 0;
+            const draggedLeft = previousMx.current > mx;
+            const draggedRight = previousMx.current < mx;
+            previousMx.current = mx;
             if (distance[0] > 120 || velocity[0] * distance[0] > 40) {
                 if (draggedRight && !prevClickDisabled()) {
                     cancel();
@@ -95,6 +97,7 @@ const ImageCarousel: React.FC<Props> = ({ imagePaths, visibleImagesCount = 3, im
         } else {
             setTransition(generateDragTransition(velocity[0]));
             setDragOffset(0);
+            previousMx.current = 0;
         }
     });
 
