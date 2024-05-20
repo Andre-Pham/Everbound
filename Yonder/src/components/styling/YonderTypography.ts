@@ -11,6 +11,10 @@ class YonderTypography {
         return new YonderTypographyConfig(24, YonderFontFamily.Mx437, YonderColors.textDark, YonderFontWeight.regular);
     }
 
+    static get header(): YonderTypographyConfig {
+        return new YonderTypographyConfig(36, YonderFontFamily.Mx437, YonderColors.textDark, YonderFontWeight.regular);
+    }
+
     static get body(): YonderTypographyConfig {
         return new YonderTypographyConfig(20, YonderFontFamily.Mx437, YonderColors.textDark, YonderFontWeight.regular);
     }
