@@ -156,7 +156,7 @@ function HomeScreen() {
                         visibleImagesCount={carouselCount}
                         imageSpacing={20}
                         style={{
-                            maxWidth: 300 * carouselCount,
+                            maxWidth: 150 + 300 * carouselCount,
                         }}
                     />
                 </VStack>

@@ -32,7 +32,7 @@ class Environment {
                 return 1;
             } else {
                 const remainder = width - 500;
-                return Math.min(1 + Math.floor(remainder / 200.0), 3);
+                return Math.min(1 + Math.floor(remainder / 250.0), 3);
             }
         } else {
             const width = window.innerWidth;
@@ -40,7 +40,7 @@ class Environment {
                 return 1;
             } else {
                 const remainder = width - 500;
-                return Math.min(1 + Math.floor(remainder / 200.0), 3);
+                return Math.min(1 + Math.floor(remainder / 250.0), 3);
             }
         }
     }

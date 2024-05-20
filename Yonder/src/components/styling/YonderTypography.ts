@@ -19,6 +19,10 @@ class YonderTypography {
         return new YonderTypographyConfig(20, YonderFontFamily.Mx437, YonderColors.textDark, YonderFontWeight.regular);
     }
 
+    static get subscript(): YonderTypographyConfig {
+        return new YonderTypographyConfig(18, YonderFontFamily.Mx437, YonderColors.textDark, YonderFontWeight.regular);
+    }
+
     static get button(): YonderTypographyConfig {
         return new YonderTypographyConfig(20, YonderFontFamily.Mx437, YonderColors.textDark, YonderFontWeight.regular);
     }

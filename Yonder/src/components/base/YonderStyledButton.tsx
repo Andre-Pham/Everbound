@@ -31,10 +31,15 @@ const YonderStyledButton: React.FC<Props> = ({
     const [touched, setTouched] = useState(false);
 
     const handleMouseDown = () => {
-        setPressed(true);
+        if (!disabled) {
+            setPressed(true);
+        }
     };
 
     const handleMouseUp = () => {
+        if (!disabled) {
+            onPress();
+        }
         setPressed(false);
     };
 
@@ -43,10 +48,15 @@ const YonderStyledButton: React.FC<Props> = ({
     };
 
     const handleTouched = () => {
-        setTouched(true);
+        if (!disabled) {
+            setTouched(true);
+        }
     };
 
     const handleTouchEnd = () => {
+        if (!disabled) {
+            onPress();
+        }
         setTouched(false);
     };
 
@@ -56,6 +66,12 @@ const YonderStyledButton: React.FC<Props> = ({
 
     return (
         <div
+            onMouseDown={handleMouseDown}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseLeave}
+            onTouchStart={handleTouched}
+            onTouchEnd={handleTouchEnd}
+            onTouchCancel={handleTouchCancel}
             style={{
                 width: width ?? "100%",
                 height: 64,
@@ -64,12 +80,6 @@ const YonderStyledButton: React.FC<Props> = ({
             }}
         >
             <div
-                onMouseDown={handleMouseDown}
-                onMouseUp={handleMouseUp}
-                onMouseLeave={handleMouseLeave}
-                onTouchStart={handleTouched}
-                onTouchEnd={handleTouchEnd}
-                onTouchCancel={handleTouchCancel}
                 style={{
                     opacity: disabled ? 0.5 : 1,
                     width: "100%",
@@ -86,14 +96,12 @@ const YonderStyledButton: React.FC<Props> = ({
                     }}
                 >
                     <button
-                        onClick={!disabled ? onPress : undefined}
                         style={{
                             display: "flex",
                             flexDirection: "row",
                             alignItems: "center",
                             justifyContent: "center",
                             height: "44px",
-                            padding: "0px 22px",
                             backgroundColor: YonderColors.buttonFill.getColor(),
                             cursor: disabled ? "default" : "pointer",
                             border: "none",
