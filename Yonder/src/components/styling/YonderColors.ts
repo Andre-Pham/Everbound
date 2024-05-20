@@ -35,7 +35,11 @@ class YonderColors {
     }
 
     static get scrollBar(): YonderColor {
-        return new YonderColor("#616176");
+        return new YonderColor("#364164");
+    }
+
+    static get scrollBarBackground(): YonderColor {
+        return new YonderColor("#10182F");
     }
 }
 

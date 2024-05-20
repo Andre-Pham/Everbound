@@ -41,7 +41,7 @@ export const ColorThemeProvider: React.FC<Props> = ({ children }) => {
 // Color scheme still has to be passed in to react
 const GlobalStyle = createGlobalStyle<{ colorScheme: ColorScheme }>`
     body {
-        scrollbar-color: ${() => `${YonderColors.scrollBar.getColor()} ${YonderColors.buttonFill.getColor()}`};
+        scrollbar-color: ${() => `${YonderColors.scrollBar.getColor()} ${YonderColors.scrollBarBackground.getColor()}`};
         transition: background-color 0.2s ease, color 0.2s ease;
     }
 
@@ -61,7 +61,7 @@ const GlobalStyle = createGlobalStyle<{ colorScheme: ColorScheme }>`
     }
 
     ::-webkit-scrollbar-track {
-        background-color: ${() => YonderColors.buttonFill.getColor()};
+        background-color: ${() => YonderColors.scrollBarBackground.getColor()};
         border-radius: 0px;
     }
 `;
