@@ -7,14 +7,14 @@ class RouterNavigator {
     public static readonly CONTACT_PATH = "/contact";
     public static readonly TITLES: { [key: string]: string } = {
         [RouterNavigator.HOME_PATH]: "Everbound",
-        [RouterNavigator.CONTACT_PATH]: "Everbound | Contact",
     };
 
     private constructor() {}
 
-    public navigateContact(navigate: NavigateFunction) {
-        navigate(RouterNavigator.CONTACT_PATH);
-    }
+    // NOTE: This has been preserved to serve as an example
+    // public navigateContact(navigate: NavigateFunction) {
+    //     navigate(RouterNavigator.CONTACT_PATH);
+    // }
 
     public navigateBack(navigate: NavigateFunction) {
         navigate(-1);

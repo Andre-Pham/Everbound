@@ -6,25 +6,32 @@ import YonderCSS from "../styling/YonderCSS";
 import YonderImage, { YonderImageScale } from "../base/YonderImage";
 import VGap from "../containers/Spacing/VGap";
 import useWindowResize from "../hooks/useWindowResize";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import YonderStyledButton from "../base/YonderStyledButton";
 import HStack from "../containers/Stacks/HStack";
-import { mdiApple, mdiYoutube } from "@mdi/js";
+import { mdiApple, mdiChevronDown, mdiYoutube } from "@mdi/js";
 import AnimationPlayer from "../custom/AnimationPlayer";
 import Spacer from "../containers/Spacing/Spacer";
-import RouterNavigator from "../../services/RouterNavigator";
-import RouterLink from "../custom/RouterLink";
 import ImageCarousel from "../custom/ImageCarousel";
 import Environment from "../../state/environment/Environment";
+import YonderIconButton from "../base/YonderIconButton";
+import YonderColors from "../styling/YonderColors";
 
 function HomeScreen() {
     const [windowHeight, setWindowHeight] = useState(window.innerHeight);
     const [carouselCount, setCarouselCount] = useState(window.innerWidth);
+    const scrollRef = useRef<HTMLDivElement>(null);
 
     useWindowResize((_: number, height: number) => {
         setWindowHeight(height);
         setCarouselCount(Environment.carouselVisibleCount);
     });
+
+    const scrollToGallery = () => {
+        if (scrollRef.current) {
+            scrollRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+    };
 
     return (
         <div
@@ -122,9 +129,12 @@ function HomeScreen() {
 
                     <Spacer />
 
-                    <RouterLink path={RouterNavigator.CONTACT_PATH} typography={YonderTypography.navigationLink}>
-                        {"Contact"}
-                    </RouterLink>
+                    <YonderIconButton
+                        color={YonderColors.buttonOutline}
+                        size={36}
+                        iconPath={mdiChevronDown}
+                        onPress={scrollToGallery}
+                    />
                 </VStack>
 
                 <VGap size={YonderDimensions.screenPadding + 16} />
@@ -135,6 +145,8 @@ function HomeScreen() {
                         justifyContent: "center",
                     }}
                 >
+                    <div ref={scrollRef} style={{ marginTop: -20, marginBottom: 20 }} />
+
                     <YonderText typography={YonderTypography.header} wide={false} style={{ textAlign: "center" }}>
                         {"Gallery"}
                     </YonderText>
@@ -159,6 +171,28 @@ function HomeScreen() {
                             maxWidth: 150 + 300 * carouselCount,
                         }}
                     />
+
+                    <VGap size={60} />
+
+                    <YonderText
+                        typography={YonderTypography.subscript}
+                        wide={false}
+                        style={{ maxWidth: 300, textAlign: "center" }}
+                    >
+                        {"For game related enquires, questions, and feedback:"}
+                    </YonderText>
+
+                    <VGap size={12} />
+
+                    <YonderText
+                        typography={YonderTypography.body.withUnderline(true)}
+                        wide={false}
+                        style={{ maxWidth: 400, textAlign: "center" }}
+                    >
+                        {"everboundrpg@gmail.com"}
+                    </YonderText>
+
+                    <VGap size={40} />
                 </VStack>
             </VStack>
         </div>
