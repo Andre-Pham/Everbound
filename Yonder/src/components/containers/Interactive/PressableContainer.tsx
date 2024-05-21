@@ -17,7 +17,6 @@ const PressableContainer: React.FC<Props> = ({ onPress, disableSelection = false
     };
 
     const handleMouseUp = () => {
-        onPress();
         setPressed(false);
     };
 
@@ -30,7 +29,6 @@ const PressableContainer: React.FC<Props> = ({ onPress, disableSelection = false
     };
 
     const handleTouchEnd = () => {
-        onPress();
         setTouched(false);
     };
 
@@ -46,6 +44,7 @@ const PressableContainer: React.FC<Props> = ({ onPress, disableSelection = false
             onTouchStart={handleTouched}
             onTouchEnd={handleTouchEnd}
             onTouchCancel={handleTouchCancel}
+            onClick={onPress}
             style={{
                 display: "flex",
                 cursor: "pointer",

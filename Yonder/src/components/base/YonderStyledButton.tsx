@@ -37,9 +37,6 @@ const YonderStyledButton: React.FC<Props> = ({
     };
 
     const handleMouseUp = () => {
-        if (!disabled) {
-            onPress();
-        }
         setPressed(false);
     };
 
@@ -54,15 +51,18 @@ const YonderStyledButton: React.FC<Props> = ({
     };
 
     const handleTouchEnd = () => {
-        if (!disabled) {
-            onPress();
-        }
         setTouched(false);
     };
 
     const handleTouchCancel = () => {
         setTouched(false);
     };
+
+    const handleOnClick = () => {
+        if (!disabled) {
+            onPress();
+        }
+    }
 
     return (
         <div
@@ -72,6 +72,7 @@ const YonderStyledButton: React.FC<Props> = ({
             onTouchStart={handleTouched}
             onTouchEnd={handleTouchEnd}
             onTouchCancel={handleTouchCancel}
+            onClick={handleOnClick}
             style={{
                 width: width ?? "100%",
                 height: 64,
@@ -107,7 +108,6 @@ const YonderStyledButton: React.FC<Props> = ({
                             border: "none",
                             ...YonderCSS.diableSelection,
                         }}
-                        disabled={disabled}
                     >
                         {iconPath && (
                             <Icon

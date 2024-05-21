@@ -19,7 +19,6 @@ const FlatContainer: React.FC<Props> = ({ color, onPress = undefined, disableSel
     };
 
     const handleMouseUp = () => {
-        onPress && onPress();
         setPressed(false);
     };
 
@@ -32,7 +31,6 @@ const FlatContainer: React.FC<Props> = ({ color, onPress = undefined, disableSel
     };
 
     const handleTouchEnd = () => {
-        onPress && onPress();
         setTouched(false);
     };
 
@@ -60,6 +58,7 @@ const FlatContainer: React.FC<Props> = ({ color, onPress = undefined, disableSel
             onTouchStart={handleTouched}
             onTouchEnd={handleTouchEnd}
             onTouchCancel={handleTouchCancel}
+            onClick={onPress}
             style={{
                 borderRadius: 16,
                 padding: 18,

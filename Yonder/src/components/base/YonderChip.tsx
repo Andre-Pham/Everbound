@@ -18,7 +18,6 @@ const YonderChip: React.FC<Props> = ({ color, onPress, children, style }) => {
     };
 
     const handleMouseUp = () => {
-        onPress && onPress();
         setPressed(false);
     };
 
@@ -31,7 +30,6 @@ const YonderChip: React.FC<Props> = ({ color, onPress, children, style }) => {
     };
 
     const handleTouchEnd = () => {
-        onPress && onPress();
         setTouched(false);
     };
 
@@ -47,6 +45,7 @@ const YonderChip: React.FC<Props> = ({ color, onPress, children, style }) => {
             onTouchStart={handleTouched}
             onTouchEnd={handleTouchEnd}
             onTouchCancel={handleTouchCancel}
+            onClick={onPress}
             style={{
                 borderRadius: "50px",
                 padding: "4px 12px",
