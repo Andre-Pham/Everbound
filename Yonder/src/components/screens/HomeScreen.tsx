@@ -21,7 +21,7 @@ import { isMobile } from "react-device-detect";
 
 function HomeScreen() {
     const [windowHeight, setWindowHeight] = useState(window.innerHeight);
-    const [carouselCount, setCarouselCount] = useState(window.innerWidth);
+    const [carouselCount, setCarouselCount] = useState(Environment.carouselVisibleCount);
     const scrollRef = useRef<HTMLDivElement>(null);
 
     useWindowResize((_: number, height: number) => {
@@ -53,7 +53,11 @@ function HomeScreen() {
                 minHeight: 500,
             }}
         >
-            <VStack>
+            <VStack
+                style={{
+                    flexWrap: "nowrap",
+                }}
+            >
                 <VStack
                     style={{
                         alignItems: "center",
@@ -155,6 +159,7 @@ function HomeScreen() {
                     style={{
                         alignItems: "center",
                         justifyContent: "center",
+                        flexWrap: "nowrap",
                     }}
                 >
                     <div ref={scrollRef} style={{ marginTop: -20, marginBottom: 20 }} />

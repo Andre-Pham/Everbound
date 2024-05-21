@@ -1,4 +1,4 @@
-import { isMobile } from "react-device-detect";
+import { isMobile, isMobileOnly } from "react-device-detect";
 import YonderDimensions from "../../components/styling/YonderDimensions";
 
 class Environment {
@@ -21,7 +21,7 @@ class Environment {
     }
 
     public static get carouselVisibleCount(): number {
-        if (isMobile) {
+        if (isMobileOnly) {
             // If we're on a mobile device, just use screen dimensions
             // Note: .width and .height don't change with orientation so we use .max/.min
             const isPortrait = window.innerWidth < window.innerHeight;

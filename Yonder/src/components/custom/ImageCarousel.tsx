@@ -4,7 +4,7 @@ import HStack from "../containers/Stacks/HStack";
 import YonderTypography from "../styling/YonderTypography";
 import YonderStyledButton from "../base/YonderStyledButton";
 import HGap from "../containers/Spacing/HGap";
-import { isMobileOnly } from "react-device-detect";
+import { isMobile, isMobileOnly } from "react-device-detect";
 import VStack from "../containers/Stacks/VStack";
 import Spacer from "../containers/Spacing/Spacer";
 import YonderText from "../base/YonderText";
@@ -34,7 +34,7 @@ const DivWithoutScrollBar = styled.div`
 
 const ImageCarousel: React.FC<Props> = ({ imagePaths, visibleImagesCount = 3, imageSpacing = 10, style }) => {
     const shouldRenderMobile = (): boolean => {
-        return isMobileOnly;
+        return isMobileOnly || (isMobile && visibleImagesCount === 1);
     };
     const shouldRenderPortrait = (): boolean => {
         return window.innerWidth <= 500;
@@ -91,16 +91,30 @@ const ImageCarousel: React.FC<Props> = ({ imagePaths, visibleImagesCount = 3, im
     const scrollToNext = () => {
         if (scrollContainerRef.current) {
             const nextIndex = (currentIndex + 1) % imagePaths.length;
-            const nextImage = scrollContainerRef.current.children[nextIndex];
-            nextImage.scrollIntoView({ behavior: "smooth" });
+            const nextImage = scrollContainerRef.current.children[nextIndex] as HTMLElement;
+            if (nextImage) {
+                const parentContainer = scrollContainerRef.current;
+                const nextImageLeftPosition = nextImage.offsetLeft;
+                parentContainer.scrollTo({
+                    left: nextImageLeftPosition,
+                    behavior: "smooth"
+                });
+            }
         }
     };
 
     const scrollToPrevious = () => {
         if (scrollContainerRef.current) {
             const previousIndex = Math.max(0, currentIndex - 1);
-            const nextImage = scrollContainerRef.current.children[previousIndex];
-            nextImage.scrollIntoView({ behavior: "smooth" });
+            const nextImage = scrollContainerRef.current.children[previousIndex] as HTMLElement;
+            if (nextImage) {
+                const parentContainer = scrollContainerRef.current;
+                const nextImageLeftPosition = nextImage.offsetLeft;
+                parentContainer.scrollTo({
+                    left: nextImageLeftPosition,
+                    behavior: "smooth"
+                });
+            }
         }
     };
 
