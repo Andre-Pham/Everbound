@@ -17,6 +17,7 @@ import Environment from "../../state/environment/Environment";
 import YonderIconButton from "../base/YonderIconButton";
 import YonderColors from "../styling/YonderColors";
 import LinksManager from "../../services/LinksManager";
+import { isMobile } from "react-device-detect";
 
 function HomeScreen() {
     const [windowHeight, setWindowHeight] = useState(window.innerHeight);
@@ -24,7 +25,9 @@ function HomeScreen() {
     const scrollRef = useRef<HTMLDivElement>(null);
 
     useWindowResize((_: number, height: number) => {
-        setWindowHeight(height);
+        if (!isMobile) {
+            setWindowHeight(height);
+        }
         setCarouselCount(Environment.carouselVisibleCount);
     });
 
@@ -50,7 +53,7 @@ function HomeScreen() {
                 minHeight: 500,
             }}
         >
-            <VStack style={{}}>
+            <VStack>
                 <VStack
                     style={{
                         alignItems: "center",
@@ -135,6 +138,8 @@ function HomeScreen() {
                     />
 
                     <Spacer />
+
+                    <VGap size={24} />
 
                     <YonderIconButton
                         color={YonderColors.buttonOutline}
