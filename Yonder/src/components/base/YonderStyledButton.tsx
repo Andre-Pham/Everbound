@@ -62,7 +62,7 @@ const YonderStyledButton: React.FC<Props> = ({
         if (!disabled) {
             onPress();
         }
-    }
+    };
 
     return (
         <div

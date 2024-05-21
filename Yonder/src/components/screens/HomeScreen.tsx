@@ -39,11 +39,11 @@ function HomeScreen() {
 
     const openTrailer = () => {
         LinksManager.inst.openLink(LinksManager.TRAILER_LINK);
-    }
+    };
 
     const openAppStore = () => {
         LinksManager.inst.openLink(LinksManager.APP_STORE);
-    }
+    };
 
     return (
         <div
