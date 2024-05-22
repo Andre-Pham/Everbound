@@ -77,6 +77,7 @@ const YonderIconButton: React.FC<Props> = ({
                     scale={YonderImageScale.scaleToFit}
                     style={{
                         alignSelf: "center",
+                        minHeight: size,
                     }}
                 />
             ) : undefined}
@@ -88,6 +89,7 @@ const YonderIconButton: React.FC<Props> = ({
                     color={iconColor ?? new YonderColor("#ffffff")}
                     style={{
                         alignSelf: "center",
+                        minHeight: size,
                     }}
                 />
             ) : undefined}
