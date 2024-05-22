@@ -71,8 +71,8 @@ function HomeScreen() {
                     <YonderImage
                         fileName="header.png"
                         scale={YonderImageScale.scaleToFill}
+                        pixelArt={true}
                         style={{
-                            ...YonderCSS.noInterpolation,
                             width: "100%",
                             maxWidth: 500,
                         }}
@@ -134,8 +134,8 @@ function HomeScreen() {
                             "firepit7.png",
                         ]}
                         scale={YonderImageScale.scaleToFill}
+                        pixelArt={true}
                         style={{
-                            ...YonderCSS.noInterpolation,
                             width: "70%",
                             maxWidth: 300,
                         }}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { UnreachableCaseError } from "../../language/errors/UnreachableCaseError";
+import styled from "styled-components";
 
 export enum YonderImageScale {
     none,
@@ -14,6 +15,7 @@ interface Props {
     height?: number | string;
     scale?: YonderImageScale;
     draggable?: boolean;
+    pixelArt?: boolean;
     style?: React.CSSProperties;
 }
 
@@ -23,6 +25,7 @@ const YonderImage: React.FC<Props> = ({
     height = "auto",
     scale = YonderImageScale.none,
     draggable = false,
+    pixelArt = false,
     style,
 }) => {
     const [size, setSize] = useState<{ width?: number | string; height?: number | string }>({
@@ -66,20 +69,46 @@ const YonderImage: React.FC<Props> = ({
         }
     }, []);
 
-    return (
-        <img
-            src={`${import.meta.env.BASE_URL}images/${fileName}`}
-            alt={fileName}
-            onLoad={handleImageLoaded}
-            draggable={draggable}
-            style={{
-                objectFit: resizeMode,
-                width: size.width,
-                height: size.height,
-                ...style,
-            }}
-        />
-    );
+    if (pixelArt) {
+        return (
+            <NearestNeighbourImage
+                src={`${import.meta.env.BASE_URL}images/${fileName}`}
+                alt={fileName}
+                onLoad={handleImageLoaded}
+                draggable={draggable}
+                style={{
+                    objectFit: resizeMode,
+                    width: size.width,
+                    height: size.height,
+                    ...style,
+                }}
+            />
+        );
+    } else {
+        return (
+            <img
+                src={`${import.meta.env.BASE_URL}images/${fileName}`}
+                alt={fileName}
+                onLoad={handleImageLoaded}
+                draggable={draggable}
+                style={{
+                    objectFit: resizeMode,
+                    width: size.width,
+                    height: size.height,
+                    ...style,
+                }}
+            />
+        );
+    }
 };
+
+const NearestNeighbourImage = styled.img`
+    /* IE, only works on <img> tags */
+    -ms-interpolation-mode: nearest-neighbor;
+    /* Firefox */
+    image-rendering: crisp-edges;
+    /* Chromium + Safari */
+    image-rendering: pixelated;
+`;
 
 export default YonderImage;

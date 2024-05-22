@@ -7,6 +7,7 @@ interface Props {
     width?: number | string;
     height?: number | string;
     scale?: YonderImageScale;
+    pixelArt?: boolean;
     style?: React.CSSProperties;
 }
 
@@ -16,6 +17,7 @@ const AnimationPlayer: React.FC<Props> = ({
     width = undefined,
     height = undefined,
     scale = YonderImageScale.scaleToFit,
+    pixelArt = false,
     style,
 }) => {
     const [frameIndex, setFrameIndex] = useState(0);
@@ -34,6 +36,7 @@ const AnimationPlayer: React.FC<Props> = ({
             width={width}
             height={height}
             style={style}
+            pixelArt={pixelArt}
             scale={scale}
         />
     );
