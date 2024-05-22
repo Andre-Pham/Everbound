@@ -97,7 +97,7 @@ const ImageCarousel: React.FC<Props> = ({ imagePaths, visibleImagesCount = 3, im
                 const nextImageLeftPosition = nextImage.offsetLeft;
                 parentContainer.scrollTo({
                     left: nextImageLeftPosition,
-                    behavior: "smooth"
+                    behavior: "smooth",
                 });
             }
         }
@@ -112,7 +112,7 @@ const ImageCarousel: React.FC<Props> = ({ imagePaths, visibleImagesCount = 3, im
                 const nextImageLeftPosition = nextImage.offsetLeft;
                 parentContainer.scrollTo({
                     left: nextImageLeftPosition,
-                    behavior: "smooth"
+                    behavior: "smooth",
                 });
             }
         }
