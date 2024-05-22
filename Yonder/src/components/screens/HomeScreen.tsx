@@ -2,7 +2,6 @@ import VStack from "../containers/Stacks/VStack";
 import YonderText from "../base/YonderText";
 import YonderTypography from "../styling/YonderTypography";
 import YonderDimensions from "../styling/YonderDimensions";
-import YonderCSS from "../styling/YonderCSS";
 import YonderImage, { YonderImageScale } from "../base/YonderImage";
 import VGap from "../containers/Spacing/VGap";
 import useWindowResize from "../hooks/useWindowResize";
