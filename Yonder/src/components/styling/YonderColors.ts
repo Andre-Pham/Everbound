@@ -15,7 +15,7 @@ class YonderColors {
     }
 
     static get textSemiDark(): YonderColor {
-        return new YonderColor("#9191a2");
+        return new YonderColor("#666672");
     }
 
     static get textLight(): YonderColor {

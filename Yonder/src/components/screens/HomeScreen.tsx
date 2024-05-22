@@ -80,9 +80,9 @@ function HomeScreen() {
                     <VGap size={16} />
 
                     <YonderText
-                        typography={YonderTypography.subheader}
+                        typography={YonderTypography.subheader.withColor(YonderColors.textSemiDark)}
                         wide={false}
-                        style={{ textAlign: "center", opacity: 0.4 }}
+                        style={{ textAlign: "center" }}
                     >
                         {"An iOS RPG Roguelike"}
                     </YonderText>
