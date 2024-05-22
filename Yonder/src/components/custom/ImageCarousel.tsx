@@ -139,6 +139,15 @@ const ImageCarousel: React.FC<Props> = ({ imagePaths, visibleImagesCount = 3, im
         };
     }, [visibleImagesCount]);
 
+    const handleImageLoad = () => {
+        // The ordering in which the images load affect the starting scroll position of the carousel (on mobile)
+        // Hence we add a callback so every time an image loads in, we reset the scroll to 0
+        // You can verify this approach works by setting the scrollLeft value to, say, 600
+        if (scrollContainerRef.current) {
+            scrollContainerRef.current.scrollLeft = 0;
+        }
+    };
+
     if (renderMobile) {
         return (
             <VStack
@@ -163,6 +172,7 @@ const ImageCarousel: React.FC<Props> = ({ imagePaths, visibleImagesCount = 3, im
                             src={`${import.meta.env.BASE_URL}images/${imagePath}`}
                             alt={imagePath}
                             draggable={false}
+                            onLoad={handleImageLoad}
                             style={{
                                 minWidth: `calc(${100 / visibleImagesCount}% - ${(imageSpacing * (visibleImagesCount - 1)) / visibleImagesCount}px)`,
                                 maxWidth: `calc(${100 / visibleImagesCount}% - ${(imageSpacing * (visibleImagesCount - 1)) / visibleImagesCount}px)`,
