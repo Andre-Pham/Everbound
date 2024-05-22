@@ -4,7 +4,6 @@ class RouterNavigator {
     public static readonly inst = new RouterNavigator();
 
     public static readonly HOME_PATH = "/";
-    public static readonly CONTACT_PATH = "/contact";
     public static readonly TITLES: { [key: string]: string } = {
         [RouterNavigator.HOME_PATH]: "Everbound",
     };

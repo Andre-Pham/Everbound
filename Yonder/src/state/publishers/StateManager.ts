@@ -1,6 +1,5 @@
 import LocalStorageManager from "../../services/LocalStorageManager";
 import YonderValuePublisher from "./impl/YonderValuePublisher";
-import { ActiveSection } from "./types/ActiveSection";
 import { ColorScheme } from "./types/ColorScheme";
 
 /**
@@ -37,8 +36,6 @@ import { ColorScheme } from "./types/ColorScheme";
  * ```
  */
 class StateManager {
-    public static readonly activeSection = new YonderValuePublisher(ActiveSection.none);
-
     public static readonly colorScheme = new YonderValuePublisher(ColorScheme.light);
 
     public static setup() {
