@@ -77,6 +77,7 @@ const YonderStyledButton: React.FC<Props> = ({
                 width: width ?? "100%",
                 height: 64,
                 position: "relative",
+                ...YonderCSS.diableSelection,
                 ...style,
             }}
         >
