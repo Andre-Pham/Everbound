@@ -28,7 +28,7 @@ class YonderTypography {
     }
 
     static get navigationLink(): YonderTypographyConfig {
-        return new YonderTypographyConfig(16, YonderFontFamily.Mx437, YonderColors.textDark, YonderFontWeight.regular);
+        return new YonderTypographyConfig(18, YonderFontFamily.Mx437, YonderColors.textDark, YonderFontWeight.regular);
     }
 }
 

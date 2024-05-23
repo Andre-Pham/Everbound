@@ -6,6 +6,7 @@ import TitleProvider from "./components/providers/TitleProvider.tsx";
 import { HashRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import RouterNavigator from "./services/RouterNavigator.ts";
 import HomeScreen from "./components/screens/HomeScreen.tsx";
+import PrivacyPolicyScreen from "./components/screens/PrivacyPolicyScreen.tsx";
 
 // For more about routing:
 // https://reactrouter.com/en/main/start/tutorial
@@ -17,6 +18,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
                 <TitleProvider>
                     <Routes>
                         <Route path={RouterNavigator.HOME_PATH} element={<HomeScreen />} />
+                        <Route path={RouterNavigator.PRIVACY_POLICY_PATH} element={<PrivacyPolicyScreen />} />
                         {/* Invalid paths redirect to root */}
                         <Route path="*" element={<Navigate to={RouterNavigator.HOME_PATH} />} />
                     </Routes>

@@ -4,16 +4,17 @@ class RouterNavigator {
     public static readonly inst = new RouterNavigator();
 
     public static readonly HOME_PATH = "/";
+    public static readonly PRIVACY_POLICY_PATH = "/privacy-policy";
     public static readonly TITLES: { [key: string]: string } = {
         [RouterNavigator.HOME_PATH]: "Everbound",
+        [RouterNavigator.PRIVACY_POLICY_PATH]: "Everbound | Privacy Policy",
     };
 
     private constructor() {}
 
-    // NOTE: This has been preserved to serve as an example
-    // public navigateContact(navigate: NavigateFunction) {
-    //     navigate(RouterNavigator.CONTACT_PATH);
-    // }
+    public navigatePrivacyPolicy(navigate: NavigateFunction) {
+        navigate(RouterNavigator.PRIVACY_POLICY_PATH);
+    }
 
     public navigateBack(navigate: NavigateFunction) {
         navigate(-1);

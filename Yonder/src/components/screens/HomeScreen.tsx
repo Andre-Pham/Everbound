@@ -16,18 +16,24 @@ import Environment from "../../state/environment/Environment";
 import YonderIconButton from "../base/YonderIconButton";
 import YonderColors from "../styling/YonderColors";
 import LinksManager from "../../services/LinksManager";
+import RouterLink from "../custom/RouterLink";
+import RouterNavigator from "../../services/RouterNavigator";
+import FlexibleVGap from "../containers/Spacing/FlexibleVGap";
 import { isMobile } from "react-device-detect";
+import usePageBlur from "../hooks/usePageBlur";
 
 function HomeScreen() {
-    const [windowHeight, setWindowHeight] = useState(window.innerHeight);
     const [carouselCount, setCarouselCount] = useState(Environment.carouselVisibleCount);
     const scrollRef = useRef<HTMLDivElement>(null);
 
-    useWindowResize((_: number, height: number) => {
+    useWindowResize(() => {
         if (!isMobile) {
-            setWindowHeight(height);
+            setCarouselCount(Environment.carouselVisibleCount);
         }
-        setCarouselCount(Environment.carouselVisibleCount);
+    });
+
+    usePageBlur(() => {
+        window.scrollTo(0, 0);
     });
 
     const scrollToGallery = () => {
@@ -61,7 +67,7 @@ function HomeScreen() {
                     style={{
                         alignItems: "center",
                         justifyContent: "center",
-                        height: windowHeight - YonderDimensions.screenPadding * 2 - 16,
+                        minHeight: `calc(100svh - ${YonderDimensions.screenPadding * 2 + (isMobile ? 16 : 0)}px)`,
                         flexWrap: "nowrap",
                     }}
                 >
@@ -87,7 +93,7 @@ function HomeScreen() {
                         {"An iOS RPG Roguelike"}
                     </YonderText>
 
-                    <VGap size={100} />
+                    <FlexibleVGap maxSize={100} minSize={30} />
 
                     <YonderText
                         typography={YonderTypography.body}
@@ -120,7 +126,7 @@ function HomeScreen() {
                         />
                     </HStack>
 
-                    <VGap size={100} />
+                    <FlexibleVGap maxSize={100} minSize={30} />
 
                     <AnimationPlayer
                         frames={[
@@ -208,7 +214,13 @@ function HomeScreen() {
                         {"everboundrpg@gmail.com"}
                     </YonderText>
 
-                    <VGap size={40} />
+                    <VGap size={60} />
+
+                    <RouterLink path={RouterNavigator.PRIVACY_POLICY_PATH} typography={YonderTypography.navigationLink}>
+                        {"Privacy Policy"}
+                    </RouterLink>
+
+                    <VGap size={32} />
                 </VStack>
             </VStack>
         </div>
