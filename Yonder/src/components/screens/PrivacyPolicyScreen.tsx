@@ -7,6 +7,7 @@ import RouterBackLink from "../custom/RouterBackLink";
 import RouterLink from "../custom/RouterLink";
 import RouterNavigator from "../../services/RouterNavigator";
 import usePageBlur from "../hooks/usePageBlur";
+import { isMobile } from "react-device-detect";
 
 function PrivacyPolicyScreen() {
     usePageBlur(() => {
@@ -29,11 +30,23 @@ function PrivacyPolicyScreen() {
                     flexWrap: "nowrap",
                 }}
             >
+                {isMobile && <VGap size={48} />}
+
                 <RouterLink path={RouterNavigator.HOME_PATH} typography={YonderTypography.navigationLink} wide={false}>
                     {"Home"}
                 </RouterLink>
 
                 <VGap size={30} />
+
+                <YonderText
+                    typography={YonderTypography.title}
+                    wide={false}
+                    style={{ maxWidth: 500, textAlign: "center" }}
+                >
+                    {"- PRIVACY POLICY -"}
+                </YonderText>
+
+                <VGap size={24} />
 
                 <YonderText
                     typography={YonderTypography.header}
@@ -160,6 +173,8 @@ function PrivacyPolicyScreen() {
                 <RouterBackLink typography={YonderTypography.navigationLink} wide={false}>
                     {"Back"}
                 </RouterBackLink>
+
+                {isMobile && <VGap size={48} />}
             </VStack>
         </div>
     );
