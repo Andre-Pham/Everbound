@@ -8,8 +8,8 @@ import { isMobile, isMobileOnly } from "react-device-detect";
 import VStack from "../containers/Stacks/VStack";
 import Spacer from "../containers/Spacing/Spacer";
 import YonderText from "../base/YonderText";
-import useWindowResize from "../hooks/useWindowResize";
 import styled from "styled-components";
+import useMediaQuery from "../hooks/useMediaQuery";
 
 interface Props {
     imagePaths: string[];
@@ -33,24 +33,14 @@ const DivWithoutScrollBar = styled.div`
 `;
 
 const ImageCarousel: React.FC<Props> = ({ imagePaths, visibleImagesCount = 3, imageSpacing = 10, style }) => {
-    const shouldRenderMobile = (): boolean => {
-        return isMobileOnly || (isMobile && visibleImagesCount === 1);
-    };
-    const shouldRenderPortrait = (): boolean => {
-        return window.innerWidth <= 500;
-    };
     const pressTransition = "transform 0.55s cubic-bezier(0.5, 0.1, 0.1, 1.0)";
     const noTransition = "none";
     const [currentIndex, setCurrentIndex] = useState(0);
     const [transition, setTransition] = useState(pressTransition);
-    const [renderMobile, setRenderMobile] = useState(shouldRenderMobile());
-    const [renderPortrait, setRenderPortrait] = useState(shouldRenderPortrait());
     const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-    useWindowResize(() => {
-        setRenderMobile(shouldRenderMobile());
-        setRenderPortrait(shouldRenderPortrait());
-    });
+    const renderMobile = isMobileOnly || (isMobile && visibleImagesCount === 1);
+    const renderPortrait = useMediaQuery("(max-width: 500px)");
 
     const handlePrevClick = (transition: string) => {
         setTransition(transition);

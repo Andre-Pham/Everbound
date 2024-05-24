@@ -4,15 +4,13 @@ import YonderTypography from "../styling/YonderTypography";
 import YonderDimensions from "../styling/YonderDimensions";
 import YonderImage, { YonderImageScale } from "../base/YonderImage";
 import VGap from "../containers/Spacing/VGap";
-import useWindowResize from "../hooks/useWindowResize";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import YonderStyledButton from "../base/YonderStyledButton";
 import HStack from "../containers/Stacks/HStack";
 import { mdiApple, mdiChevronDown, mdiYoutube } from "@mdi/js";
 import AnimationPlayer from "../custom/AnimationPlayer";
 import Spacer from "../containers/Spacing/Spacer";
 import ImageCarousel from "../custom/ImageCarousel";
-import Environment from "../../state/environment/Environment";
 import YonderIconButton from "../base/YonderIconButton";
 import YonderColors from "../styling/YonderColors";
 import LinksManager from "../../services/LinksManager";
@@ -21,16 +19,21 @@ import RouterNavigator from "../../services/RouterNavigator";
 import FlexibleVGap from "../containers/Spacing/FlexibleVGap";
 import { isMobile } from "react-device-detect";
 import usePageBlur from "../hooks/usePageBlur";
+import useMediaQuery from "../hooks/useMediaQuery";
 
 function HomeScreen() {
-    const [carouselCount, setCarouselCount] = useState(Environment.carouselVisibleCount);
     const scrollRef = useRef<HTMLDivElement>(null);
 
-    useWindowResize(() => {
-        if (!isMobile) {
-            setCarouselCount(Environment.carouselVisibleCount);
-        }
-    });
+    const isLessThan750 = useMediaQuery("(max-width: 749px)");
+    const isLessThan1000 = useMediaQuery("(max-width: 999px)");
+    let carouselCount;
+    if (isLessThan750) {
+        carouselCount = 1;
+    } else if (isLessThan1000) {
+        carouselCount = 2;
+    } else {
+        carouselCount = 3;
+    }
 
     usePageBlur(() => {
         window.scrollTo(0, 0);
