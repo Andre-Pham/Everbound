@@ -214,7 +214,7 @@ function HomeScreen() {
                         wide={false}
                         style={{ maxWidth: 400, textAlign: "center" }}
                     >
-                        {"everboundrpg@gmail.com"}
+                        {"contact@everbound.net"}
                     </YonderText>
 
                     <VGap size={60} />

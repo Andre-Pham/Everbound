@@ -134,7 +134,7 @@ function PrivacyPolicyScreen() {
                         wide={false}
                         style={{ maxWidth: 500, textAlign: "center" }}
                     >
-                        {" everboundrpg@gmail.com"}
+                        {" contact@everbound.net"}
                     </YonderText>
 
                     {"."}
